@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width"><title>Upload</title>
+<style>body{background:#0a0a0a;color:#fff;font-family:sans-serif;padding:20px} .card{max-width:400px;margin:30px auto;background:#141414;border:1px solid #222;border-radius:12px;padding:20px} input{width:100%;background:#1e1e1e;border:1px solid #333;color:#fff;padding:10px;border-radius:8px;margin-top:10px} button{width:100%;background:#00ff88;color:#000;border:0;padding:12px;border-radius:8px;font-weight:800;margin-top:12px}</style>
+</head><body>
+<div class="card">
+<h2>+ Upload Beat</h2>
+<form method="POST" enctype="multipart/form-data">
+<input name="title" placeholder="Beat Title" required>
+<input name="bpm" placeholder="BPM 140"><input name="key" placeholder="Key C Min">
+<input name="price" placeholder="Price 149" value="149">
+<input name="ewallet" placeholder="eWallet 068 045 8336" value="068 045 8336" required>
+<input type="file" name="beat" accept=".mp3,.wav,.m4a" required>
+<button>Upload to Live</button>
+</form>
+<p style="text-align:center;margin-top:12px"><a href="/" style="color:#00ff88">← Back</a></p>
+</div></body></html>

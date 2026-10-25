@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeatVault • DOP3KID.LK</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{background:#0a0a0a;color:#fff}
+header{background:#111;border-bottom:1px solid #222;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-weight:800;font-size:20px} .logo span{color:#00ff88}
+.nav a{color:#aaa;text-decoration:none;margin-left:14px;font-weight:600;font-size:13px} .nav a:hover{color:#fff}
+.hero{padding:28px 20px;background:linear-gradient(#1a1a1a,#0a0a0a);border-bottom:1px solid #222}
+.hero h1{font-size:26px;font-weight:800} .hero p{color:#888;margin-top:6px;font-size:13px}
+.stats{display:flex;gap:8px;margin-top:12px} .stat{background:#222;border:1px solid #333;border-radius:20px;padding:5px 10px;font-size:11px;color:#00ff88}
+.grid{padding:16px;padding-bottom:90px}
+.beat{display:grid;grid-template-columns:54px 1fr auto;gap:12px;background:#141414;border:1px solid #222;border-radius:12px;padding:12px;margin-bottom:10px;align-items:center}
+.beat:hover{border-color:#333}
+.cover{width:54px;height:54px;border-radius:8px;background:#222;object-fit:cover}
+.t{font-weight:700;font-size:14px} .m{font-size:11px;color:#888;margin-top:2px}
+.tag{display:inline-block;font-size:10px;background:#222;border:1px solid #333;padding:3px 7px;border-radius:20px;color:#aaa;margin-right:4px;margin-top:5px}
+.btn-play{width:36px;height:36px;border-radius:50%;background:#222;border:0;color:#fff;font-weight:800;cursor:pointer}
+.btn-buy{background:#00ff88;color:#000;border:0;padding:10px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer}
+audio{width:100%;height:24px;margin-top:6px}
+.empty{text-align:center;padding:60px;color:#666} .empty a{color:#00ff88}
+.player{position:fixed;bottom:0;left:0;right:0;background:#181818;border-top:1px solid #2a2a2a;padding:10px 20px;display:flex;gap:12px;align-items:center}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">BEATVAULT <span>• DOP3KID.LK</span></div>
+<div class="nav">
+<a href="/">Feed</a>
+<a href="/upload">+ Upload</a>
+<a href="#" style="color:#00ff88">💰 068 045 8336</a>
+</div>
+</header>
+<div class="hero">
+<h1>🔥 Marketplace — Pay Each Seller Direct</h1>
+<p>Each beat → seller's own eWallet | Premium → 068 045 8336 (DOP3KID.LK)</p>
+<div class="stats">
+<div class="stat">● LIVE v8.0 BeatStars</div>
+<div class="stat">📀 {{ beats|length }} Beats</div>
+<div class="stat">🔒 Direct eWallet</div>
+</div>
+</div>
+<div class="grid">
+{% if beats %}
+{% for b in beats %}
+<div class="beat">
+<img class="cover" src="{{ b.cover }}">
+<div>
+<div class="t">{{ b.title }}</div>
+<div class="m">{{ b.bpm }} BPM • {{ b.key }} • R{{ b.price }}</div>
+<div><span class="tag">→ {{ b.seller }}</span> <span class="tag">{{ b.date }}</span></div>
+<audio controls src="/beats/{{ b.filename }}"></audio>
+</div>
+<div style="display:flex;gap:8px">
+<button class="btn-play" onclick="this.nextElementSibling.nextElementSibling.play()">▶</button>
+<a href="https://wa.me/27680458336?text=I%20want%20{{ b.title }}" target="_blank"><button class="btn-buy">Buy R{{ b.price }}</button></a>
+</div>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty">
+<h2>No beats yet</h2>
+<p style="margin-top:8px">Upload your first hit</p>
+<p style="margin-top:12px"><a href="/upload">+ Upload Beat — Set eWallet</a></p>
+</div>
+{% endif %}
+</div>
+<div class="player">
+<div style="width:40px;height:40px;background:#222;border-radius:6px"></div>
+<div style="flex:1"><div style="font-size:12px;font-weight:700">BeatVault Player</div><div style="font-size:10px;color:#888">v8.0 • 068 045 8336 • LIVE</div></div>
+<div style="font-size:10px;color:#00ff88">● LIVE</div>
+</div>
+<script>
+document.querySelectorAll('audio').forEach(a=>{
+ a.addEventListener('play',()=>{document.querySelectorAll('audio').forEach(o=>{if(o!==a) o.pause()})})
+})
+</script>
+</body>
+</html>
